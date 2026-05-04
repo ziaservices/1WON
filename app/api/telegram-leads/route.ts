@@ -47,10 +47,10 @@ export async function POST(request: Request) {
     }
 
     const message = [
-      "New 1WON ride request",
+      "Nod t7awa 3ndk ride jdida!  🚗",
       "",
-      `Full name: ${fullName}`,
-      `Phone number: ${phoneNumber}`,
+      `Smiat khona/khtna: ${fullName}`,
+      `nmra: ${phoneNumber}`,
       `Pickup: ${pickupLocation}`,
       `Drop-off: ${dropoffLocation}`,
       `Pickup from map: ${pickupChosenFromMap ? "Yes" : "No"}`,
