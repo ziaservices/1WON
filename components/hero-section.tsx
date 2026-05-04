@@ -17,8 +17,13 @@ export function HeroSection() {
   const [activeTab, setActiveTab] = useState<"ride" | "food">("ride")
   const [pickupLocation, setPickupLocation] = useState("")
   const [dropoffLocation, setDropoffLocation] = useState("")
+  const [pickupChosenFromMap, setPickupChosenFromMap] = useState(false)
+  const [dropoffChosenFromMap, setDropoffChosenFromMap] = useState(false)
   const [mapTarget, setMapTarget] = useState<"pickup" | "dropoff">("pickup")
   const [mapOpen, setMapOpen] = useState(false)
+  const [isSubmittingRide, setIsSubmittingRide] = useState(false)
+  const [rideSubmitMessage, setRideSubmitMessage] = useState("")
+  const [rideSubmitError, setRideSubmitError] = useState(false)
   const { t, isRTL } = useLanguage()
 
   const handleSelectOnMap = (target: "pickup" | "dropoff") => {
@@ -73,8 +78,10 @@ export function HeroSection() {
                 const selectedLocation = isRTL ? "موقع محدد من الخريطة" : "Location from map"
                 if (mapTarget === "pickup") {
                   setPickupLocation(selectedLocation)
+                  setPickupChosenFromMap(true)
                 } else {
                   setDropoffLocation(selectedLocation)
+                  setDropoffChosenFromMap(true)
                 }
                 setMapOpen(false)
               }}
@@ -213,7 +220,10 @@ export function HeroSection() {
                     <Input
                       placeholder={t("hero.pickup")}
                       value={pickupLocation}
-                      onChange={(e) => setPickupLocation(e.target.value)}
+                      onChange={(e) => {
+                        setPickupLocation(e.target.value)
+                        setPickupChosenFromMap(false)
+                      }}
                       className={cn(
                         "h-14 bg-muted/50 border-0 rounded-xl text-base",
                         isRTL ? "pr-12 pr-24 text-right" : "pl-12 pr-24"
@@ -242,7 +252,10 @@ export function HeroSection() {
                     <Input
                       placeholder={t("hero.dropoff")}
                       value={dropoffLocation}
-                      onChange={(e) => setDropoffLocation(e.target.value)}
+                      onChange={(e) => {
+                        setDropoffLocation(e.target.value)
+                        setDropoffChosenFromMap(false)
+                      }}
                       className={cn(
                         "h-14 bg-muted/50 border-0 rounded-xl text-base",
                         isRTL ? "pr-12 pr-24 text-right" : "pl-12 pr-24"
@@ -259,13 +272,76 @@ export function HeroSection() {
                       {isRTL ? "الخريطة" : "Map"}
                     </button>
                   </div>
-                  <Button className={cn(
-                    "w-full h-14 bg-primary hover:bg-primary/90 text-primary-foreground text-base font-semibold rounded-xl gap-2",
-                    isRTL && "flex-row-reverse"
-                  )}>
-                    {t("hero.findride")}
+                  <Button
+                    disabled={isSubmittingRide}
+                    onClick={async () => {
+                      if (!pickupLocation.trim() || !dropoffLocation.trim()) return
+
+                      try {
+                        setIsSubmittingRide(true)
+                        setRideSubmitMessage("")
+                        setRideSubmitError(false)
+                        const response = await fetch("/api/telegram-leads", {
+                          method: "POST",
+                          headers: {
+                            "Content-Type": "application/json",
+                          },
+                          body: JSON.stringify({
+                            pickupLocation,
+                            dropoffLocation,
+                            pickupChosenFromMap,
+                            dropoffChosenFromMap,
+                          }),
+                        })
+
+                        if (!response.ok) {
+                          let errorMessage = "Failed to submit request"
+                          try {
+                            const errorBody = await response.json()
+                            if (typeof errorBody?.error === "string") {
+                              errorMessage = errorBody.error
+                            }
+                          } catch {
+                            // Keep fallback message when response is not JSON.
+                          }
+                          throw new Error(errorMessage)
+                        }
+                        setRideSubmitMessage(
+                          isRTL ? "تم إرسال طلبك بنجاح." : "Your request was sent successfully.",
+                        )
+                      } catch (error) {
+                        console.error("Telegram lead submission error:", error)
+                        setRideSubmitError(true)
+                        setRideSubmitMessage(
+                          error instanceof Error
+                            ? error.message
+                            : isRTL
+                              ? "فشل إرسال الطلب. حاول مرة أخرى."
+                              : "Failed to submit the request. Please try again.",
+                        )
+                      } finally {
+                        setIsSubmittingRide(false)
+                      }
+                    }}
+                    className={cn(
+                      "w-full h-14 bg-primary hover:bg-primary/90 text-primary-foreground text-base font-semibold rounded-xl gap-2",
+                      isRTL && "flex-row-reverse"
+                    )}
+                  >
+                    {isSubmittingRide ? (isRTL ? "جارٍ الإرسال..." : "Sending...") : t("hero.findride")}
                     <ArrowRight className={cn("w-5 h-5", isRTL && "rotate-180")} />
                   </Button>
+                  {rideSubmitMessage && (
+                    <p
+                      className={cn(
+                        "text-sm",
+                        rideSubmitError ? "text-red-500" : "text-emerald-600",
+                        isRTL && "text-right",
+                      )}
+                    >
+                      {rideSubmitMessage}
+                    </p>
+                  )}
                 </div>
               )}
 
