@@ -53,9 +53,9 @@ export function Footer() {
           <div className={cn("col-span-2 md:col-span-3 lg:col-span-2", isRTL && "text-right")}>
             <Link href="/" className={cn("inline-flex items-center gap-2 mb-6", isRTL && "flex-row-reverse")}>
               <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-primary to-accent flex items-center justify-center">
-                <span className="text-white font-bold text-xl">G</span>
+                <span className="text-white font-bold text-xl">1</span>
               </div>
-              <span className="font-bold text-xl text-white">GoFlow</span>
+              <span className="font-bold text-xl text-white">1WON</span>
             </Link>
             <p className={cn("text-white/60 mb-6 max-w-sm", isRTL && "mr-0 ml-auto")}>
               {t("footer.desc")}
@@ -142,10 +142,10 @@ export function Footer() {
             isRTL && "md:flex-row-reverse"
           )}>
             <p className="text-sm text-white/50">
-              © {new Date().getFullYear()} GoFlow. {t("footer.rights")}
+              © {new Date().getFullYear()} 1WON. {t("footer.rights")}
             </p>
             <p className="text-sm text-white/50">
-              Made with love in Morocco
+              Built for Morocco, from Morocco
             </p>
           </div>
         </div>

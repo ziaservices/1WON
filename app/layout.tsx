@@ -9,8 +9,8 @@ const _geist = Geist({ subsets: ["latin"] });
 const _geistMono = Geist_Mono({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: 'GoFlow - Rides, Food & Payments in One Place',
-  description: 'Book rides, order food, and make payments instantly. All your daily services unified in one seamless platform.',
+  title: '1WON - Morocco Rides, Food & Payments',
+  description: '1WON connects Morocco with fast rides, food delivery, and seamless payments across Casablanca, Rabat, Marrakech, Tangier, and beyond.',
   generator: 'v0.app',
   icons: {
     icon: [

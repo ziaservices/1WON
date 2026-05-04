@@ -9,23 +9,27 @@ import { TestimonialsSection } from "@/components/testimonials-section"
 import { CTASection } from "@/components/cta-section"
 import { Footer } from "@/components/footer"
 import { MobileCTA } from "@/components/mobile-cta"
+import { SiteScrollBackground } from "@/components/site-scroll-background"
 
 export default function Home() {
   return (
     <>
-      <Navbar />
-      <main>
-        <HeroSection />
-        <ServicesSection />
-        <HowItWorksSection />
-        <DriverPartnerSection />
-        <FeaturesSection />
-        <CitiesSection />
-        <TestimonialsSection />
-        <CTASection />
-      </main>
-      <Footer />
-      <MobileCTA />
+      <SiteScrollBackground />
+      <div className="relative z-10">
+        <Navbar />
+        <main>
+          <HeroSection />
+          <ServicesSection />
+          <HowItWorksSection />
+          <DriverPartnerSection />
+          <FeaturesSection />
+          <CitiesSection />
+          <TestimonialsSection />
+          <CTASection />
+        </main>
+        <Footer />
+        <MobileCTA />
+      </div>
     </>
   )
 }

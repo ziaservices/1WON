@@ -13,7 +13,7 @@ const testimonials = {
       role: "Daily Commuter, Casablanca",
       avatar: "FM",
       rating: 5,
-      quote: "GoFlow has completely changed how I get around Casablanca. The drivers are always on time, the cars are clean, and the prices are fair. I can't imagine going back to regular taxis.",
+      quote: "1WON has completely changed how I get around Casablanca. The drivers are always on time, the cars are clean, and the prices are fair. I can't imagine going back to regular taxis.",
     },
     {
       id: 2,
@@ -29,7 +29,7 @@ const testimonials = {
       role: "Restaurant Owner, Marrakech",
       avatar: "AI",
       rating: 5,
-      quote: "As a restaurant partner, GoFlow has helped us reach customers we never could before. Our delivery orders have increased by 40% since joining the platform.",
+      quote: "As a restaurant partner, 1WON has helped us reach customers we never could before. Our delivery orders have increased by 40% since joining the platform.",
     },
     {
       id: 4,
@@ -45,7 +45,7 @@ const testimonials = {
       role: "Working Mother, Tangier",
       avatar: "LT",
       rating: 5,
-      quote: "Between school runs and grocery deliveries, GoFlow saves me hours every week. The payment system is so smooth - I barely notice the transactions.",
+      quote: "Between school runs and grocery deliveries, 1WON saves me hours every week. The payment system is so smooth - I barely notice the transactions.",
     },
   ],
   fr: [
@@ -55,7 +55,7 @@ const testimonials = {
       role: "Navetteur quotidien, Casablanca",
       avatar: "FM",
       rating: 5,
-      quote: "GoFlow a complètement changé ma façon de me déplacer à Casablanca. Les chauffeurs sont toujours à l'heure, les voitures sont propres et les prix sont justes.",
+      quote: "1WON a complètement changé ma façon de me déplacer à Casablanca. Les chauffeurs sont toujours à l'heure, les voitures sont propres et les prix sont justes.",
     },
     {
       id: 2,
@@ -71,7 +71,7 @@ const testimonials = {
       role: "Propriétaire de restaurant, Marrakech",
       avatar: "AI",
       rating: 5,
-      quote: "En tant que partenaire restaurant, GoFlow nous a aidés à atteindre des clients que nous n'aurions jamais pu toucher avant.",
+      quote: "En tant que partenaire restaurant, 1WON nous a aidés à atteindre des clients que nous n'aurions jamais pu toucher avant.",
     },
     {
       id: 4,
@@ -87,7 +87,7 @@ const testimonials = {
       role: "Mère active, Tanger",
       avatar: "LT",
       rating: 5,
-      quote: "Entre les trajets scolaires et les livraisons de courses, GoFlow me fait gagner des heures chaque semaine.",
+      quote: "Entre les trajets scolaires et les livraisons de courses, 1WON me fait gagner des heures chaque semaine.",
     },
   ],
   ar: [
@@ -97,7 +97,7 @@ const testimonials = {
       role: "متنقلة يومياً، الدار البيضاء",
       avatar: "فم",
       rating: 5,
-      quote: "غيّر GoFlow تماماً طريقة تنقلي في الدار البيضاء. السائقون دائماً في الموعد، السيارات نظيفة، والأسعار عادلة.",
+      quote: "غيّر 1WON تماماً طريقة تنقلي في الدار البيضاء. السائقون دائماً في الموعد، السيارات نظيفة، والأسعار عادلة.",
     },
     {
       id: 2,
@@ -113,7 +113,7 @@ const testimonials = {
       role: "صاحبة مطعم، مراكش",
       avatar: "أإ",
       rating: 5,
-      quote: "كشريك مطعم، ساعدنا GoFlow في الوصول إلى عملاء لم نكن نستطيع الوصول إليهم من قبل.",
+      quote: "كشريك مطعم، ساعدنا 1WON في الوصول إلى عملاء لم نكن نستطيع الوصول إليهم من قبل.",
     },
     {
       id: 4,
@@ -129,7 +129,7 @@ const testimonials = {
       role: "أم عاملة، طنجة",
       avatar: "لت",
       rating: 5,
-      quote: "بين توصيل المدرسة وتوصيل البقالة، يوفر لي GoFlow ساعات كل أسبوع.",
+      quote: "بين توصيل المدرسة وتوصيل البقالة، يوفر لي 1WON ساعات كل أسبوع.",
     },
   ],
 }

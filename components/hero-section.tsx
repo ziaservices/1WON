@@ -8,7 +8,6 @@ import {
   DialogContent,
   DialogHeader,
   DialogTitle,
-  DialogTrigger,
 } from "@/components/ui/dialog"
 import { MapPin, Navigation, Search, ArrowRight, Car, UtensilsCrossed, Map } from "lucide-react"
 import { cn } from "@/lib/utils"
@@ -88,9 +87,9 @@ export function HeroSection() {
       </DialogContent>
     </Dialog>
 
-    <section className="relative min-h-screen flex items-center pt-20 overflow-hidden">
+    <section className="relative isolate min-h-screen flex items-center pt-20 overflow-hidden">
       {/* Background Elements */}
-      <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-background to-accent/5" />
+      <div className="absolute inset-0 -z-10 bg-gradient-to-b from-background/35 via-background/40 to-background/50" />
       <div className="absolute top-20 right-0 w-[600px] h-[600px] bg-primary/10 rounded-full blur-3xl opacity-50" />
       <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-accent/10 rounded-full blur-3xl opacity-50" />
       

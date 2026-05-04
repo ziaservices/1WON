@@ -50,10 +50,10 @@ export function Navbar() {
             {/* Logo */}
             <Link href="/" className={cn("flex items-center gap-2", isRTL && "flex-row-reverse")}>
               <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-primary to-accent flex items-center justify-center">
-                <span className="text-primary-foreground font-bold text-xl">G</span>
+                <span className="text-primary-foreground font-bold text-xl">1</span>
               </div>
               <span className="font-bold text-xl text-foreground">
-                GoFlow
+                1WON
               </span>
             </Link>
 

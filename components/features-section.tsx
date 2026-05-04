@@ -97,7 +97,7 @@ export function FeaturesSection() {
                       </div>
                       <div className="flex-1 mx-4">
                         <div className="bg-background rounded-lg px-3 py-1.5 text-xs text-muted-foreground">
-                          goflow.ma/{feature.image}
+                          1won.ma/{feature.image}
                         </div>
                       </div>
                     </div>
