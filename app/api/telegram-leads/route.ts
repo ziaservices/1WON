@@ -47,7 +47,7 @@ export async function POST(request: Request) {
     }
 
     const message = [
-      "Nod t7awa 3ndk ride jdida!  🚗",
+      "3ndk ride jdida!  🚗",
       "",
       `Smiat khona/khtna: ${fullName}`,
       `nmra: ${phoneNumber}`,
