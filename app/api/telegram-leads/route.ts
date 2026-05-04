@@ -1,6 +1,8 @@
 import { NextResponse } from "next/server"
 
 type LeadPayload = {
+  fullName?: string
+  phoneNumber?: string
   pickupLocation?: string
   dropoffLocation?: string
   pickupChosenFromMap?: boolean
@@ -9,25 +11,37 @@ type LeadPayload = {
 
 export async function POST(request: Request) {
   try {
-    const botToken = process.env.TELEGRAM_BOT_TOKEN
-    const chatId = process.env.TELEGRAM_CHAT_ID
+    const botToken = process.env.TELEGRAM_BOT_TOKEN?.trim()
+    const chatId = process.env.TELEGRAM_CHAT_ID?.trim()
 
     if (!botToken || !chatId) {
+      const missing = [
+        !botToken ? "TELEGRAM_BOT_TOKEN" : null,
+        !chatId ? "TELEGRAM_CHAT_ID" : null,
+      ].filter(Boolean)
       return NextResponse.json(
-        { error: "Telegram integration is not configured." },
+        {
+          error: "Telegram integration is not configured.",
+          missing,
+        },
         { status: 500 },
       )
     }
 
     const body = (await request.json()) as LeadPayload
+    const fullName = body.fullName?.trim() ?? ""
+    const phoneNumber = body.phoneNumber?.trim() ?? ""
     const pickupLocation = body.pickupLocation?.trim() ?? ""
     const dropoffLocation = body.dropoffLocation?.trim() ?? ""
     const pickupChosenFromMap = Boolean(body.pickupChosenFromMap)
     const dropoffChosenFromMap = Boolean(body.dropoffChosenFromMap)
 
-    if (!pickupLocation || !dropoffLocation) {
+    if (!fullName || !phoneNumber || !pickupLocation || !dropoffLocation) {
       return NextResponse.json(
-        { error: "Pickup and drop-off locations are required." },
+        {
+          error:
+            "Full name, phone number, pickup and drop-off locations are required.",
+        },
         { status: 400 },
       )
     }
@@ -35,6 +49,8 @@ export async function POST(request: Request) {
     const message = [
       "New 1WON ride request",
       "",
+      `Full name: ${fullName}`,
+      `Phone number: ${phoneNumber}`,
       `Pickup: ${pickupLocation}`,
       `Drop-off: ${dropoffLocation}`,
       `Pickup from map: ${pickupChosenFromMap ? "Yes" : "No"}`,

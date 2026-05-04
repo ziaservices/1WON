@@ -15,6 +15,8 @@ import { useLanguage } from "@/lib/language-context"
 
 export function HeroSection() {
   const [activeTab, setActiveTab] = useState<"ride" | "food">("ride")
+  const [fullName, setFullName] = useState("")
+  const [phoneNumber, setPhoneNumber] = useState("")
   const [pickupLocation, setPickupLocation] = useState("")
   const [dropoffLocation, setDropoffLocation] = useState("")
   const [pickupChosenFromMap, setPickupChosenFromMap] = useState(false)
@@ -212,6 +214,24 @@ export function HeroSection() {
               {/* Ride Form */}
               {activeTab === "ride" && (
                 <div className="space-y-4 animate-in fade-in duration-300">
+                  <Input
+                    placeholder={isRTL ? "الاسم الكامل" : "Full name"}
+                    value={fullName}
+                    onChange={(e) => setFullName(e.target.value)}
+                    className={cn(
+                      "h-14 bg-muted/50 border-0 rounded-xl text-base",
+                      isRTL && "text-right",
+                    )}
+                  />
+                  <Input
+                    placeholder={isRTL ? "رقم الهاتف" : "Phone number"}
+                    value={phoneNumber}
+                    onChange={(e) => setPhoneNumber(e.target.value)}
+                    className={cn(
+                      "h-14 bg-muted/50 border-0 rounded-xl text-base",
+                      isRTL && "text-right",
+                    )}
+                  />
                   <div className="relative">
                     <MapPin className={cn(
                       "absolute top-1/2 -translate-y-1/2 w-5 h-5 text-primary",
@@ -275,7 +295,20 @@ export function HeroSection() {
                   <Button
                     disabled={isSubmittingRide}
                     onClick={async () => {
-                      if (!pickupLocation.trim() || !dropoffLocation.trim()) return
+                      if (
+                        !fullName.trim() ||
+                        !phoneNumber.trim() ||
+                        !pickupLocation.trim() ||
+                        !dropoffLocation.trim()
+                      ) {
+                        setRideSubmitError(true)
+                        setRideSubmitMessage(
+                          isRTL
+                            ? "يرجى إدخال الاسم الكامل ورقم الهاتف وموقعي الالتقاط والتوصيل."
+                            : "Please provide full name, phone number, pickup and drop-off locations.",
+                        )
+                        return
+                      }
 
                       try {
                         setIsSubmittingRide(true)
@@ -287,6 +320,8 @@ export function HeroSection() {
                             "Content-Type": "application/json",
                           },
                           body: JSON.stringify({
+                            fullName,
+                            phoneNumber,
                             pickupLocation,
                             dropoffLocation,
                             pickupChosenFromMap,
